@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Complex Function Analyzer</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.11.1/math.js"></script>
+</head>
+
+<body>
+    <div id="loader" style="display: none;">Loading...</div>
+    <div class="container">
+        <h1>Complex Function Analytic Checker</h1>
+
+        <div class="function-input">
+            <label class="func-label">Function:</label>
+            <input type="text" id="funcInput" placeholder="Enter a function, e.g. z^2" />
+        </div>
+
+
+        <div class="point-inputs">
+            <label>Check at z =</label>
+            <input type="number" id="realInput" placeholder="Re (a)" />
+            <span> + i </span>
+            <input type="number" id="imagInput" placeholder="Im (b)" />
+        </div>
+
+        <div class="keyboard">
+            <button onclick="insert('z')">z</button>
+            <button onclick="insert('^')">^</button>
+            <button onclick="insert('+')">+</button>
+            <button onclick="insert('-')">-</button>
+            <button onclick="insert('i')">i</button>
+            <button onclick="insert('exp(')">exp(</button>
+            <button onclick="insert('conj(')">conj(</button>
+            <button onclick="insert(')')">)</button>
+            <button onclick="clearInput()">⌫</button>
+        </div>
+
+        <div class="example-buttons">
+            <h3>Try these examples:</h3>
+            <div class="example-group">
+                <h4>Fully Analytic/Non-analytic:</h4>
+                <button onclick="loadExample(1)">z² + 2z + 1</button>
+                <button onclick="loadExample(2)">exp(z)</button>
+                <button onclick="loadExample(3)">conj(z)</button>
+                <button onclick="loadExample(4)">abs(z)</button>
+            </div>
+            <div class="example-group">
+                <h4>Half-Analytic Functions:</h4>
+                <button onclick="loadExample(5)">Right Half-Plane</button>
+                <button onclick="loadExample(6)">Unit Circle</button>
+                <button onclick="loadExample(7)">Horizontal Strip</button>
+                <button onclick="loadExample(8)">First Quadrant</button>
+            </div>
+        </div>
+
+        <button onclick="checkAnalytic()">Check</button>
+        <canvas id="analyticMap" width="500" height="270"></canvas>
+        <button onclick="checkRegion()">Check Region</button>
+
+        <p id="result"></p>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
