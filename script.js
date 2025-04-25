@@ -18,7 +18,7 @@ function checkAnalytic() {
     const input = document.getElementById("funcInput").value.trim();
     const a = document.getElementById("realInput").value;
     const b = document.getElementById("imagInput").value;
-    
+
     // Input validation
     if (!input) {
         document.getElementById('result').textContent = "Please enter a function.";
@@ -74,7 +74,7 @@ function evaluateComplex(func, z) {
     try {
         const result = func.evaluate({ z });
         // Check for Infinity or NaN
-        if (!isFinite(result.re) || !isFinite(result.im) || 
+        if (!isFinite(result.re) || !isFinite(result.im) ||
             isNaN(result.re) || isNaN(result.im)) {
             return null;
         }
@@ -116,7 +116,7 @@ function checkRegion() {
 
                 let isAnalytic = false;
                 const f_val = evaluateComplex(func, z);
-                
+
                 if (f_val) {
                     const fxh = evaluateComplex(func, math.complex(x + h, y));
                     const fyh = evaluateComplex(func, math.complex(x, y + h));
@@ -244,10 +244,10 @@ canvas.addEventListener("mousemove", (e) => {
 function isPointAnalytic(x, y) {
     const cellWidth = (viewport.xMax - viewport.xMin) / gridData.length;
     const cellHeight = (viewport.yMax - viewport.yMin) / gridData[0].length;
-    
+
     const i = Math.floor((x - viewport.xMin) / cellWidth);
     const j = Math.floor((y - viewport.yMin) / cellHeight);
-    
+
     if (i >= 0 && i < gridData.length && j >= 0 && j < gridData[0].length) {
         return gridData[i][j].isAnalytic;
     }
@@ -265,8 +265,8 @@ function loadExample(exampleNum) {
     const funcInput = document.getElementById("funcInput");
     const realInput = document.getElementById("realInput");
     const imagInput = document.getElementById("imagInput");
-    
-    switch(exampleNum) {
+
+    switch (exampleNum) {
         case 1: // Simple polynomial (always analytic)
             funcInput.value = "z^2 + 2*z + 1";
             realInput.value = "1";
@@ -308,7 +308,7 @@ function loadExample(exampleNum) {
             imagInput.value = "1";
             break;
     }
-    
+
     // Trigger both checks
     checkAnalytic();
     checkRegion();
